@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% set user_id = user['id'] %}
+{% block title %}Dashboard - Fusion Core Lift{% endblock %}
+{% block content %}
+<h2 class="mb-1">Welcome, {{ user['name'] }} 👋</h2>
+<p class="text-muted mb-4">
+    Goal: <strong>{{ user['goal'] }}</strong> &middot;
+    Fitness Level: <strong>{{ user['fitness_level'] }}</strong> &middot;
+    Diet: <strong>{{ user['diet'] }}</strong>
+</p>
+
+<div class="row g-3">
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="card fcl-card text-center h-100">
+            <div class="card-body">
+                <div class="metric-label">BMI</div>
+                <div class="metric-value">{{ bmi }}</div>
+                <div class="text-muted small">{{ bmi_category }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="card fcl-card text-center h-100">
+            <div class="card-body">
+                <div class="metric-label">Calories</div>
+                <div class="metric-value">{{ calories }}</div>
+                <div class="text-muted small">kcal / day (est.)</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="card fcl-card text-center h-100">
+            <div class="card-body">
+                <div class="metric-label">Protein</div>
+                <div class="metric-value">{{ protein }}g</div>
+                <div class="text-muted small">per day (est.)</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="card fcl-card text-center h-100">
+            <div class="card-body">
+                <div class="metric-label">Water</div>
+                <div class="metric-value">{{ water }}L</div>
+                <div class="text-muted small">per day (est.)</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-2">
+        <div class="card fcl-card text-center h-100">
+            <div class="card-body">
+                <div class="metric-label">Sleep</div>
+                <div class="metric-value">{{ sleep }}</div>
+                <div class="text-muted small">recommended</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="text-muted small mt-2">
+    These are general fitness estimates for informational purposes only, not a medical diagnosis.
+</p>
+
+<div class="row mt-4 g-3">
+    <div class="col-md-6">
+        <div class="card fcl-card h-100">
+            <div class="card-body">
+                <h5>Your Personalized Workout</h5>
+                <p class="text-muted">A weekly plan built around your goal and fitness level.</p>
+                <a href="{{ url_for('workout', user_id=user['id']) }}" class="btn fcl-btn-primary">View Workout</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card fcl-card h-100">
+            <div class="card-body">
+                <h5>Your Diet Plan</h5>
+                <p class="text-muted">Meal suggestions matched to your diet preference and goal.</p>
+                <a href="{{ url_for('diet', user_id=user['id']) }}" class="btn fcl-btn-primary">View Diet</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

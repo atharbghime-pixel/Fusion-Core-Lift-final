@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Register - Fusion Core Lift{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card fcl-card">
+            <div class="card-body p-4">
+                <h2 class="mb-4">Create Your Fitness Profile</h2>
+
+                {% if errors %}
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        {% for error in errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <form method="POST" action="{{ url_for('register_submit') }}" novalidate>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" required
+                                   value="{{ form_data.get('name', '') }}">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Age</label>
+                            <input type="number" class="form-control" name="age" min="13" max="100" required
+                                   value="{{ form_data.get('age', '') }}">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Gender</label>
+                            <select class="form-select" name="gender" required>
+                                <option value="" disabled {% if not form_data.get('gender') %}selected{% endif %}>Select</option>
+                                {% for g in genders %}
+                                <option value="{{ g }}" {% if form_data.get('gender') == g %}selected{% endif %}>{{ g }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Height (cm)</label>
+                            <input type="number" step="0.1" class="form-control" name="height" min="50" max="250" required
+                                   value="{{ form_data.get('height', '') }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Weight (kg)</label>
+                            <input type="number" step="0.1" class="form-control" name="weight" min="20" max="400" required
+                                   value="{{ form_data.get('weight', '') }}">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Fitness Goal</label>
+                            <select class="form-select" name="goal" required>
+                                <option value="" disabled {% if not form_data.get('goal') %}selected{% endif %}>Select</option>
+                                {% for g in goals %}
+                                <option value="{{ g }}" {% if form_data.get('goal') == g %}selected{% endif %}>{{ g }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Fitness Level</label>
+                            <select class="form-select" name="fitness_level" required>
+                                <option value="" disabled {% if not form_data.get('fitness_level') %}selected{% endif %}>Select</option>
+                                {% for l in levels %}
+                                <option value="{{ l }}" {% if form_data.get('fitness_level') == l %}selected{% endif %}>{{ l }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Diet Preference</label>
+                            <select class="form-select" name="diet" required>
+                                <option value="" disabled {% if not form_data.get('diet') %}selected{% endif %}>Select</option>
+                                {% for d in diets %}
+                                <option value="{{ d }}" {% if form_data.get('diet') == d %}selected{% endif %}>{{ d }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Injury / Limitation (optional)</label>
+                            <input type="text" class="form-control" name="injury" placeholder="e.g. None, knee pain, shoulder injury"
+                                   value="{{ form_data.get('injury', '') }}">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn fcl-btn-primary mt-4 w-100">Create Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

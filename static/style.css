@@ -1,0 +1,56 @@
+:root {
+    --fcl-primary: #ff5e3a;
+    --fcl-dark: #1c1f2b;
+    --fcl-accent: #2dd4bf;
+}
+
+body {
+    background-color: #f6f7fb;
+    color: #1c1f2b;
+}
+
+.fcl-navbar {
+    background-color: var(--fcl-dark);
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--fcl-dark), #333a52);
+    color: white;
+    border-radius: 1rem;
+    padding: 3rem 1rem;
+}
+
+.fcl-btn-primary {
+    background-color: var(--fcl-primary);
+    border: none;
+    color: white;
+    font-weight: 600;
+}
+
+.fcl-btn-primary:hover {
+    background-color: #e14e2c;
+    color: white;
+}
+
+.fcl-card {
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--fcl-dark);
+}
+
+footer {
+    border-top: 1px solid #e5e7eb;
+}

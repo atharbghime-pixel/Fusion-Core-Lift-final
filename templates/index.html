@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Fusion Core Lift - Smart Fitness Assistant{% endblock %}
+{% block content %}
+<div class="hero text-center py-5">
+    <h1 class="display-4 fw-bold">Fusion Core Lift</h1>
+    <p class="lead">Smart Fitness Assistant</p>
+    <p class="mb-4">Personalized workout and nutrition guidance based on your fitness profile.</p>
+    <a href="{{ url_for('register_form') }}" class="btn btn-lg fcl-btn-primary">Get Started</a>
+</div>
+
+<div class="row mt-5 g-4">
+    <div class="col-md-4">
+        <div class="card h-100 fcl-card">
+            <div class="card-body text-center">
+                <h5 class="card-title">📊 Your Metrics</h5>
+                <p class="card-text">BMI, estimated calories, protein and water targets calculated from your profile.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 fcl-card">
+            <div class="card-body text-center">
+                <h5 class="card-title">🏋️ Workout Plans</h5>
+                <p class="card-text">A weekly workout plan tailored to your goal, fitness level, and any limitations.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 fcl-card">
+            <div class="card-body text-center">
+                <h5 class="card-title">🥗 Diet Guidance</h5>
+                <p class="card-text">Simple meal suggestions matched to your diet preference and fitness goal.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

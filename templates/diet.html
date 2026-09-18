@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% set user_id = user['id'] %}
+{% block title %}Diet - Fusion Core Lift{% endblock %}
+{% block content %}
+<h2>Diet Plan for {{ user['name'] }}</h2>
+<p class="text-muted">
+    Goal: <strong>{{ plan.goal }}</strong> &middot; Diet Preference: <strong>{{ plan.diet_preference }}</strong>
+</p>
+
+<div class="row g-3 mb-3">
+    <div class="col-6 col-md-3">
+        <div class="card fcl-card text-center">
+            <div class="card-body">
+                <div class="metric-label">Daily Calories</div>
+                <div class="metric-value">{{ calories }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card fcl-card text-center">
+            <div class="card-body">
+                <div class="metric-label">Protein Target</div>
+                <div class="metric-value">{{ protein }}g</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-info">{{ plan.note }}</div>
+
+<div class="row g-3">
+    {% for meal_name, items in plan.meals.items() %}
+    <div class="col-md-6">
+        <div class="card fcl-card h-100">
+            <div class="card-body">
+                <h5>{{ meal_name }}</h5>
+                <ul class="mb-0">
+                    {% for item in items %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<p class="text-muted small mt-3">
+    This meal plan is a simple rule-based suggestion for demonstration purposes and is not a medically
+    prescribed diet.
+</p>
+{% endblock %}

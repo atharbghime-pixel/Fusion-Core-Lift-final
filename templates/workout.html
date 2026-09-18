@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% set user_id = user['id'] %}
+{% block title %}Workout - Fusion Core Lift{% endblock %}
+{% block content %}
+<h2>Workout Plan for {{ user['name'] }}</h2>
+<p class="text-muted">Goal: <strong>{{ plan.goal }}</strong> &middot; Fitness Level: <strong>{{ plan.fitness_level }}</strong></p>
+
+{% if plan.injury_warning %}
+<div class="alert alert-warning">
+    ⚠️ {{ plan.injury_warning }}
+    {% if plan.removed_exercises %}
+    <br><small>Adjusted for you: removed {{ plan.removed_exercises | join(', ') }}.</small>
+    {% endif %}
+</div>
+{% endif %}
+
+<div class="accordion mt-3" id="workoutAccordion">
+    {% for day_info in plan.weekly_plan %}
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button {% if not loop.first %}collapsed{% endif %}" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#day{{ loop.index }}">
+                {{ day_info.day }} &mdash; {{ day_info.focus }}
+            </button>
+        </h2>
+        <div id="day{{ loop.index }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}"
+             data-bs-parent="#workoutAccordion">
+            <div class="accordion-body">
+                <div class="table-responsive">
+                <table class="table table-sm align-middle">
+                    <thead>
+                        <tr><th>Exercise</th><th>Sets</th><th>Reps / Duration</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for ex in day_info.exercises %}
+                        <tr>
+                            <td>{{ ex.name }}</td>
+                            <td>{{ ex.sets }}</td>
+                            <td>{{ ex.reps }}</td>
+                            <td>{{ ex.notes }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<p class="text-muted small mt-3">
+    This plan is generated using simple rule-based logic for demonstration purposes and is not personalized
+    medical or professional training advice.
+</p>
+{% endblock %}
